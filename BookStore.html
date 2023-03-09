@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Book Purchasing Form</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="text/javascript" src="book.js"></script>
+</head>
+
+<body>
+  <h1>Book Purchasing Form</h1>
+  <form>
+    <label for="title">Title:</label>
+    <input type="text" id="title" name="title"><br><br>
+
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author"><br><br>
+
+    <label for="year">Year:</label>
+    <input type="number" id="year" name="year"><br><br>
+
+    <label for="price">Price:</label>
+    <input type="number" id="price" name="price"><br><br>
+
+    <label for="discount">Discount (%):</label>
+    <input type="number" id="discount" name="discount"><br><br>
+
+    <label for="tax">Tax (%):</label>
+    <input type="number" id="tax" name="tax"><br><br>
+
+    <button type="button" onclick="purchase()">Purchase</button>
+  </form>
+
+  <div id="output"></div>
+
+  <script type="text/javascript">
+    function purchase() {
+      
+      let title = document.getElementById("title").value;
+      let author = document.getElementById("author").value;
+      let year = parseInt(document.getElementById("year").value);
+      let price = parseFloat(document.getElementById("price").value);
+      let discount = parseFloat(document.getElementById("discount").value);
+      let tax = parseFloat(document.getElementById("tax").value);
+
+      
+      let bookDetails = {
+        title: title,
+        author: author,
+        year: year,
+        price: price
+      };
+
+      
+      let totalPrice = purchaseBook(bookDetails, discount, tax);
+
+      let output = document.getElementById("output");
+      output.innerHTML = `<p>Total price: ${totalPrice.toLocaleString("id-ID", {style: "currency", currency: "IDR"})}</p>`;
+    }
+  </script>
+</body>
+
+</html>
